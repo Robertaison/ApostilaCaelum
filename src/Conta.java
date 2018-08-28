@@ -4,20 +4,44 @@ public class Conta {
 	private int numero;
 	private Cliente titular = new Cliente();
 	private double saldo;
+	private int limite=1000000;
+	private static int totalDeContas=0;
+	private int indicadorConta=0;
 	Data dataAbertura = new Data(27,8,2018);
 	
+	public Conta() {}
+	
+	public Conta(String titular) {
+		setTitular(titular);
+	}
+	
+	public Conta(String titular, int numero, double deposita) {
+		this(titular);
+		this.numero = numero;
+		this.saldo = deposita;
+		setTotalDeContas(getTotalDeContas()+1);
+		setIndicadorConta(getTotalDeContas());
+	}
+	
+	public void setIndicadorConta(int indicadorConta) {
+		this.indicadorConta = indicadorConta;
+	}
+	
+	public int getIndicadorConta() {
+		return this.indicadorConta;
+	}
 	
 	public double redimento() {
 		double rendimento = getSaldo()*0.1;
 		return rendimento;
 	}
 	
+	public static void setTotalDeContas(int totalDeContas) {
+		Conta.totalDeContas = totalDeContas;
+	}
 	
-	public Conta(String titular, int numero, double deposita) {
-		this.numero = numero;
-		this.saldo = deposita;
-		this.titular.setNome(titular);
-		
+	public static int getTotalDeContas() {
+		return totalDeContas;
 	}
 
 	public int getNumero() {
@@ -45,8 +69,12 @@ public class Conta {
 	}
 	
 	public void deposita(double valor) {
-		this.setSaldo(this.getSaldo()+valor);
-		JOptionPane.showMessageDialog(null,"Deu bom "+titular.getNome()+".\nSaldo atual de: "+getSaldo());
+		if(valor>0 && valor<=limite) {
+			this.setSaldo(this.getSaldo()+valor);
+			JOptionPane.showMessageDialog(null,"Deu bom "+titular.getNome()+".\nSaldo atual de: "+getSaldo());	
+		}else {
+			JOptionPane.showMessageDialog(null,"Quer depositar o que com esse valor fião?");
+		}
 	}
 	
 	public void saque(double valor) {

@@ -14,7 +14,8 @@ public class OOBasico {
 //		JOptionPane.showMessageDialog(null, c2);
 //		c3.deposita(900);
 //		c3.saque(400);
-		
+		JOptionPane.showMessageDialog(null, Conta.getTotalDeContas());
+		JOptionPane.showMessageDialog(null, c2.getIndicadorConta());
 	}
 
 }
