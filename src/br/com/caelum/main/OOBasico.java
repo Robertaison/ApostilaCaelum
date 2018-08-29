@@ -1,8 +1,8 @@
 
-package br.com.caelum.conta.main;
+package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
-import br.com.caelum.conta.modelo.Conta;
+import br.com.caelum.conta.Conta;
 
 
 public class OOBasico {
