@@ -1,3 +1,4 @@
+package br.com.caelum.conta.modelo;
 
 public class Data {
 	int dia;

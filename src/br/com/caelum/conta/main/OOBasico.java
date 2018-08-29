@@ -1,13 +1,18 @@
+
+package br.com.caelum.conta.main;
 import javax.swing.JOptionPane;
+
+import br.com.caelum.conta.modelo.Conta;
+
 
 public class OOBasico {
 
 	public static void main(String[] args) {
-		Conta c1 = new Conta("alan",2222,1000);
-		Conta c2 = new Conta("parsa",2422,1000);
-		Conta c3 = new Conta("fab",2322,1000);
+		Conta c1 = new Conta("alan",2222,29,8,2018);
+		Conta c2 = new Conta("parsa",2422,29,8,2018);
+		Conta c3 = new Conta("fab",2322,29,8,2018);
 		
-		JOptionPane.showMessageDialog(null, c1.dataAbertura);
+		JOptionPane.showMessageDialog(null, c1.getDataAbertura());
 //		c1.transfere(c2, 500);
 //		c1.saque(1000);
 //		JOptionPane.showMessageDialog(null, c1);

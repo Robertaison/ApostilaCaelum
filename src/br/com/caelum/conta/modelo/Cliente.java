@@ -1,3 +1,4 @@
+package br.com.caelum.conta.modelo;
 import javax.swing.JOptionPane;
 
 public class Cliente {
