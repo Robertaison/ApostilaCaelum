@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
  *
  * @author Robertson Souza
  */
-public class Conta {
+public abstract class Conta {
 	private int numero;
 	private Cliente titular = new Cliente();
 	private double saldo;

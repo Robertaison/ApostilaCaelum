@@ -3,14 +3,15 @@ package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
 import br.com.caelum.conta.Conta;
+import br.com.caelum.conta.ContaCorrente;
 
 
 public class OOBasico {
 
 	public static void main(String[] args) {
-		Conta c1 = new Conta("alan",2222,29,8,2018);
-		Conta c2 = new Conta("parsa",2422,29,8,2018);
-		Conta c3 = new Conta("fab",2322,29,8,2018);
+		Conta c1 = new ContaCorrente("alan",2222,29,8,2018);
+		Conta c2 = new ContaCorrente("parsa",2422,29,8,2018);
+		Conta c3 = new ContaCorrente("fab",2322,29,8,2018);
 		
 		JOptionPane.showMessageDialog(null, c1.getDataAbertura());
 //		c1.transfere(c2, 500);
