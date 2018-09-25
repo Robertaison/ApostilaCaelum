@@ -1,12 +1,14 @@
 package br.com.caelum.funcionarios;
 
+import br.com.caelum.serviçosDaConta.Autenticavel;
+
 import javax.swing.JOptionPane;
 
-public class Gerente extends Funcionario{
-	protected int senha;
-	protected int numeroDeFuncionarios;
+public class Gerente extends Funcionario implements Autenticavel {
+	private int senha;
+	private int numeroDeFuncionarios;
 	
-	public boolean login(int senha) {
+	public boolean autentica(int senha) {
 		if(senha==getSenha()) {
 			JOptionPane.showMessageDialog(null, "Acesso confirmado");
 			return true;
