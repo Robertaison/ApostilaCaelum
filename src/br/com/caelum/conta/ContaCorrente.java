@@ -1,6 +1,8 @@
 package br.com.caelum.conta;
 
-public class ContaCorrente extends Conta {
+import br.com.caelum.serviçosDaConta.Tributavel;
+
+public class ContaCorrente extends Conta implements Tributavel {
     private int totalContaCorrente = 0;
 
     public ContaCorrente(){
@@ -19,5 +21,20 @@ public class ContaCorrente extends Conta {
 
     public int getTotalContaCorrente() {
         return totalContaCorrente;
+    }
+
+    @Override
+    public Double getValorImposto() {
+        return getSaldo()*0.01;
+    }
+
+    @Override
+    public String getTipo() {
+        return null;
+    }
+
+    @Override
+    public String getTitular(){
+        return "";
     }
 }
