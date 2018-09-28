@@ -30,11 +30,11 @@ public class ContaCorrente extends Conta implements Tributavel {
 
     @Override
     public String getTipo() {
-        return null;
+        return "Conta corrente";
     }
 
     @Override
     public String getTitular(){
-        return "";
+        return super.getTitular();
     }
 }
