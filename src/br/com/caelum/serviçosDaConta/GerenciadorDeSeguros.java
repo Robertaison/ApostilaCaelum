@@ -1,6 +1,6 @@
 package br.com.caelum.serviçosDaConta;
 
-public class ManipuladorDeContas {
+public class GerenciadorDeSeguros {
 
     private SeguroDeVida seguroDeVida;
 
