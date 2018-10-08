@@ -1,6 +1,5 @@
 package br.com.caelum.conta;
 
-import br.com.caelum.serviçosDaConta.Tributavel;
 
 import javax.swing.*;
 import java.time.LocalDateTime;
@@ -22,6 +21,23 @@ public class ContaCorrente implements ContaTributavel{
 
     public void setNumeroConta(int numeroConta) {
         this.numeroConta += numeroConta;
+    }
+
+    @Override
+    public void Menu() {
+        int op4=5;
+        while(op4!=0){
+            op4 = Integer.parseInt(JOptionPane.showInputDialog(toString()));
+            if (op4 == 1) {
+                int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer sacar."));
+                saca(valor);
+            } else if (op4 == 2) {
+                int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer depositar."));
+                deposita(valor);
+            }else if(op4==0){
+                JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+            }
+        }
     }
 
     @Override
@@ -52,11 +68,6 @@ public class ContaCorrente implements ContaTributavel{
         }else{
             setSaldo(getSaldo()-valor);
         }
-    }
-
-    @Override
-    public void atualiza(double taxaSelic) {
-        setSaldo(getSaldo()*taxaSelic);
     }
 
     @Override

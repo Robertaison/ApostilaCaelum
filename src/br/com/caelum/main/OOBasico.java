@@ -3,10 +3,6 @@ package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
 import br.com.caelum.conta.Cliente;
-import br.com.caelum.conta.Conta;
-import br.com.caelum.conta.ContaCorrente;
-import br.com.caelum.conta.ContaPoupanca;
-import com.sun.rowset.JoinRowSetImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +15,6 @@ public class OOBasico {
 	public static void main(String[] args) {
         int op=3;
         int op1=5;
-        int op4=5;
         int op2=5;
         int op3=5;
 
@@ -61,21 +56,14 @@ public class OOBasico {
                                             while (op3 != 0) {
                                                 op3 = Integer.parseInt(JOptionPane.showInputDialog(null, clientes.get(cliente)));
                                                 if (op3 == 1) {
-                                                    while(op4!=0){
-                                                        op4 = Integer.parseInt(JOptionPane.showInputDialog(clientes.get(cliente).getConta()));
-                                                        if (op4 == 1) {
-                                                            int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer sacar."));
-                                                            clientes.get(cliente).getConta().saca(valor);
-                                                        } else if (op4 == 2) {
-                                                            int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer depositar."));
-                                                            clientes.get(cliente).getConta().deposita(valor);
-                                                        }else if(op4==0){
-                                                            JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
-                                                        }
-                                                    }
+                                                    //contaCorrente
+                                                    clientes.get(cliente).getContaCorrente().Menu();
                                                 } else if (op3 == 2) {
                                                     //contaPoupança
-                                                } else if (op3 == 0) {
+                                                    clientes.get(cliente).getContaPoupanca().Menu();
+                                                } else if(op3 == 3){
+                                                    //seguro de vida
+                                                }else if (op3 == 0) {
                                                     JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
                                                 } else {
                                                     JOptionPane.showMessageDialog(null, "Digite uma opção correta");

@@ -13,15 +13,15 @@ public class Cliente implements Data {
 	private String cpf;
 	private int idade;
 	private static int numero = 0;
-	ContaCorrente conta;
-	ContaPoupanca contaPoupanca;
+	private ContaCorrente contaCorrente;
+	private ContaPoupanca contaPoupanca;
 
 	public Cliente(String nome, String sobrenome, String cpf, int idade) {
 		setNome(nome);
 		setSobrenome(sobrenome);
 		validarIdade(idade, cpf);
 		numero++;
-		conta = new ContaCorrente(getNome() + " " + getSobrenome(), getNumero());
+		contaCorrente = new ContaCorrente(getNome() + " " + getSobrenome(), getNumero());
 		contaPoupanca = new ContaPoupanca(getNome() + " " + getSobrenome());
 	}
 
@@ -82,8 +82,12 @@ public class Cliente implements Data {
 		}
 	}
 
-	public ContaCorrente getConta() {
-		return conta;
+	public ContaCorrente getContaCorrente() {
+		return contaCorrente;
+	}
+
+	public ContaPoupanca getContaPoupanca() {
+		return contaPoupanca;
 	}
 
 	@Override
@@ -93,8 +97,7 @@ public class Cliente implements Data {
 						 "Nome: " + getNome() + " " + getSobrenome() + "\n" +
 						 "Idade " + getIdade() + ", Cpf " + getCpf() +	"\n\nAcessar:\n" +
 						 "1. Conta Corrente" + "\n" +
-						 "2. Conta Poupança" + "\n" +
-				         "3. Consultar seguro de vida" + "\n\n" +
+						 "2. Conta Poupança" +  "\n\n" +
 						 "0. Sair" + "\n\n" +
 						 "----------------------------\n" +
 						 data();

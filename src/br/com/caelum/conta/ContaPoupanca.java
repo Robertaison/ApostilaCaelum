@@ -1,6 +1,7 @@
 package br.com.caelum.conta;
 
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -20,27 +21,42 @@ public class ContaPoupanca implements ContaTributavel {
     }
 
     @Override
+    public void Menu() {
+        int op4 =5;
+        while(op4!=0){
+            op4 = Integer.parseInt(JOptionPane.showInputDialog(toString()));
+            if (op4 == 1) {
+                int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer sacar."));
+                saca(valor);
+            } else if (op4 == 2) {
+                int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer depositar."));
+                deposita(valor);
+            }else if(op4==0){
+                JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+            }
+        }
+    }
+
+    @Override
     public double getSaldo() {
         return this.saldo;
     }
 
-    public void setSaldo(double saldo) {
+    private void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
     @Override
     public void deposita(double valor) {
-        setSaldo(valor);
+        setSaldo(getSaldo()+valor);
     }
 
     @Override
     public void saca(double valor) {
-
-    }
-
-    @Override
-    public void atualiza(double taxaSelic) {
-        setSaldo(getSaldo()*taxaSelic);
+        if(valor<=0){
+            JOptionPane.showMessageDialog(null,"Digite um valor maior que R$0,00.");
+        }
+        setSaldo(getSaldo()+valor);
     }
 
     @Override
@@ -73,6 +89,9 @@ public class ContaPoupanca implements ContaTributavel {
                        "Tipo: " + getTipo() + "\n" +
                        "Saldo: " +  getSaldo() + "\n" +
                        "Redimento último mês: " + getValorImposto() + "\n\n\n" +
+                        "1. Sacar" + "\n" +
+                        "2. Depositar" + "\n\n" +
+                        "0. Retornar ao menu anterior" + "\n\n\n" +
                        "Data atual: " + data();
         return conta;
     }
