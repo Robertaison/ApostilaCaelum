@@ -38,4 +38,9 @@ public class Gerente extends Funcionario implements Autenticavel {
 	public double getBonificacao(){
 		return super.getSalario()*1.4;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

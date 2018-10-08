@@ -3,6 +3,7 @@ package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
 import br.com.caelum.conta.Cliente;
+import br.com.caelum.conta.ListaClientes;
 import br.com.caelum.funcionarios.Funcionario;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class OOBasico {
         int op2=5;
         int op3=5;
 
-        List<Cliente> clientes = new ArrayList<Cliente>();
+        ListaClientes lista = new ListaClientes();
         List<Funcionario> funcionarios = new ArrayList<>();
         String listaClientes= "";
         int cliente;
@@ -40,10 +41,10 @@ public class OOBasico {
                                 "2. Para criar a nova conta\n\n" +
                                 "0. sair"));
                         if (op1 == 1) {
-                            if (clientes.isEmpty()) {
+                            if (lista.checarLista()) {
                                 JOptionPane.showMessageDialog(null, "Não tem clientes cadastrados.");
                             } else {
-                                for (int i = 0; i < clientes.size(); i++) {
+                                for (int i = 0; i < lista.getDimensao(); i++) {
                                     listaClientes += (i + 1) + ". " + clientes.get(i).getNome() + " " + clientes.get(i).getSobrenome() + "\n";
                                 }
                                 while (op2 != 0) {
