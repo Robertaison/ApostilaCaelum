@@ -4,7 +4,7 @@ import br.com.caelum.serviçosFuncionarios.Autenticavel;
 
 import javax.swing.JOptionPane;
 
-public class Gerente extends Funcionario implements Autenticavel {
+public class Gerente extends Funcionario  {
 	private int senha;
 	private int numeroDeFuncionarios;
 

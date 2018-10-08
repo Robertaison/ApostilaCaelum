@@ -1,22 +1,26 @@
 package br.com.caelum.serviçosFuncionarios;
 
 import br.com.caelum.conta.Cliente;
+import br.com.caelum.serviçosDaConta.CadastroClientes;
+import br.com.caelum.serviçosDaConta.ListaClientes;
 
 import java.util.List;
 
 public class GerenciarCliente implements GerenciadorDeClientes {
 
+    CadastroClientes cadastrar = new CadastroClientes();
+
     @Override
-    public void addCliente(List <Cliente> clientes, Cliente cliente) {
-        clientes.add(cliente);
+    public void addCliente(ListaClientes clientes, Cliente cliente) {
+        clientes.addCliente(cliente);
     }
 
     @Override
-    public String listaCliente(List<Cliente> clientes) {
+    public String listaCliente(ListaClientes clientes) {
         String lista = "";
-        if (!clientes.isEmpty()){
-            for(int i = 0; i<clientes.size(); i++){
-                lista += (i + 1) + ". " + clientes.get(i).getNome() + " " + clientes.get(i).getSobrenome() + "\n";
+        if (!clientes.checarLista()){
+            for(int i = 0; i<clientes.getDimensao(); i++){
+                lista += (i + 1) + ". " + clientes.getClienteIndex(i).getNome() + " " + clientes.getClienteIndex(i).getSobrenome() + "\n";
             }
         }else{
             lista += "Não há clientes cadastrados";
@@ -25,8 +29,8 @@ public class GerenciarCliente implements GerenciadorDeClientes {
     }
 
     @Override
-    public void atualizaCliente(Cliente cliente) {
-
+    public void atualizaCliente(ListaClientes lista, int index) {
+        cadastrar.cadastroClienteNoIndice(lista, index);
     }
 
     @Override

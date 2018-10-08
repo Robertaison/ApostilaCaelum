@@ -1,4 +1,6 @@
-package br.com.caelum.conta;
+package br.com.caelum.serviçosDaConta;
+
+import br.com.caelum.conta.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +38,10 @@ public class ListaClientes {
 
     public int getDimensao(){
         return clientes.size();
+    }
+
+    public void updateCliente(Cliente cliente, int index){
+        clientes.remove(index);
+        clientes.add(index, cliente);
     }
 }

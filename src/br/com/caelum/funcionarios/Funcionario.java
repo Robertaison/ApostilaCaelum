@@ -2,6 +2,7 @@ package br.com.caelum.funcionarios;
 
 import br.com.caelum.serviçosDaConta.Data;
 import br.com.caelum.serviçosFuncionarios.Autenticavel;
+import br.com.caelum.serviçosFuncionarios.FuncionarioDoSistema;
 import br.com.caelum.serviçosFuncionarios.GerenciarCliente;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
-public abstract class Funcionario implements Autenticavel, Data {
+public abstract class Funcionario implements FuncionarioDoSistema {
 	private String nome;
 	private String cpf;
 	private double salario;

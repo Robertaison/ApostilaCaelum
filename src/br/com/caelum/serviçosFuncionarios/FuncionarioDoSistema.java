@@ -1,4 +1,6 @@
 package br.com.caelum.serviçosFuncionarios;
 
-public interface FuncionarioDoSistema extends Autenticavel {
+import br.com.caelum.serviçosDaConta.Data;
+
+public interface FuncionarioDoSistema extends Autenticavel, Data {
 }
