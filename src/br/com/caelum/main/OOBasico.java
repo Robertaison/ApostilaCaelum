@@ -3,6 +3,7 @@ package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
 import br.com.caelum.conta.Cliente;
+import br.com.caelum.funcionarios.Funcionario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class OOBasico {
         int op3=5;
 
         List<Cliente> clientes = new ArrayList<Cliente>();
+        List<Funcionario> funcionarios = new ArrayList<>();
         String listaClientes= "";
         int cliente;
 

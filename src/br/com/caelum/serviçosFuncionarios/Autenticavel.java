@@ -1,4 +1,4 @@
-package br.com.caelum.serviçosDaConta;
+package br.com.caelum.serviçosFuncionarios;
 
 public interface Autenticavel {
 

@@ -1,11 +1,13 @@
-package br.com.caelum.serviçosDaConta;
+package br.com.caelum.funcionarios;
+
+import br.com.caelum.serviçosFuncionarios.Autenticavel;
 
 import javax.swing.*;
 
 public class SistemaInterno {
 
     public void login(Autenticavel a){
-        int senha=0000; //Senha setada para não quebrar codigo enquanto raciocínio lógico
+        int senha=0000; //Senha default
         boolean ok = a.autentica(senha);
 
         if(ok){
