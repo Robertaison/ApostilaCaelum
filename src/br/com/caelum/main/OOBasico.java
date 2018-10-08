@@ -12,10 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+
 public class OOBasico {
 
 	public static void main(String[] args) {
         int op=3;
+        int op1=5;
+        int op4=5;
+        int op2=5;
+        int op3=5;
+
         List<Cliente> clientes = new ArrayList<Cliente>();
         String listaClientes= "";
         int cliente;
@@ -31,45 +38,54 @@ public class OOBasico {
 
             switch (op){
                 case 1:
-                    while(op!=0) {
-                        op = Integer.parseInt(JOptionPane.showInputDialog("1. Para acesssar a conta\n" +
+                    while(op1!=0) {
+                        op1 = Integer.parseInt(JOptionPane.showInputDialog("1. Para acesssar a conta\n" +
                                 "2. Para criar a nova conta\n\n" +
                                 "0. sair"));
-                        if (op == 1) {
+                        if (op1 == 1) {
                             if (clientes.isEmpty()) {
                                 JOptionPane.showMessageDialog(null, "Não tem clientes cadastrados.");
                             } else {
                                 for (int i = 0; i < clientes.size(); i++) {
                                     listaClientes += (i + 1) + ". " + clientes.get(i).getNome() + " " + clientes.get(i).getSobrenome() + "\n";
                                 }
-                                while (op != 0) {
-                                    op = Integer.parseInt(JOptionPane.showInputDialog("Escolha sua conta: " +
+                                while (op2 != 0) {
+                                    op2 = Integer.parseInt(JOptionPane.showInputDialog("Escolha sua conta: " +
                                             "\n-----------------\n\n" +
                                             listaClientes +
                                             "\n\n-----------------\n" +
                                             "0. Para sair"));
-                                    cliente = op - 1;
-                                    if (clientes.get(cliente).validaCpf(JOptionPane.showInputDialog("Digite seu cpf, apenas números."))) {
-                                        while (op != 0) {
-                                            op = Integer.parseInt(JOptionPane.showInputDialog(null, clientes.get(cliente)));
-                                            if (op == 1) {
-                                                op = Integer.parseInt(JOptionPane.showInputDialog(clientes.get(cliente).getConta()));
-                                                if (op == 1) {
-                                                    int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer sacar."));
-                                                    clientes.get(cliente).getConta().saca(valor);
-                                                } else if (op == 2) {
-                                                    int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer depositar."));
-                                                    clientes.get(cliente).getConta().deposita(valor);
+                                    if(op2!=0){
+                                        cliente = op2 - 1;
+                                        if (clientes.get(cliente).validaCpf(JOptionPane.showInputDialog("Digite seu cpf, apenas números."))) {
+                                            while (op3 != 0) {
+                                                op3 = Integer.parseInt(JOptionPane.showInputDialog(null, clientes.get(cliente)));
+                                                if (op3 == 1) {
+                                                    while(op4!=0){
+                                                        op4 = Integer.parseInt(JOptionPane.showInputDialog(clientes.get(cliente).getConta()));
+                                                        if (op4 == 1) {
+                                                            int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer sacar."));
+                                                            clientes.get(cliente).getConta().saca(valor);
+                                                        } else if (op4 == 2) {
+                                                            int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite quanto quer depositar."));
+                                                            clientes.get(cliente).getConta().deposita(valor);
+                                                        }else if(op4==0){
+                                                            JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+                                                        }
+                                                    }
+                                                } else if (op3 == 2) {
+                                                    //contaPoupança
+                                                } else if (op3 == 0) {
+                                                    JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Digite uma opção correta");
                                                 }
-                                            } else if (op == 2) {
-                                                //contaPoupança
-                                            } else if (op == 0) {
-                                                JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "Digite uma opção correta");
                                             }
                                         }
-                                    } else {
+                                    }
+                                    else if(op2==0){
+                                        JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+                                    } else{
                                         JOptionPane.showMessageDialog(null, "Cpf inválido, digite o cpf vaálido  do usuário " +
                                                 clientes.get(op - 1).getNome() + " " +
                                                 clientes.get(op - 1).getSobrenome());
@@ -77,7 +93,7 @@ public class OOBasico {
                                 }
                             }
 
-                        } else if (op == 2) {
+                        } else if (op1 == 2) {
                             String nome = JOptionPane.showInputDialog("Digite seu primeiro nome.");
                             if (nome.equals("")) {
                                 nome = "error";

@@ -100,7 +100,8 @@ public class ContaCorrente implements ContaTributavel{
                 "Imposto devedor: R$" + getValorImposto() + "\n\n" +
                 "Digite: " + "\n" +
                 "1. Sacar" + "\n" +
-                "2. Depositar" + "\n\n\n" +
+                "2. Depositar" + "\n\n" +
+                "0. Retornar ao menu anterior" + "\n\n\n" +
                 "Data atual: " + data();
         return conta;
     }

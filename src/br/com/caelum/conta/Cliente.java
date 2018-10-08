@@ -14,6 +14,7 @@ public class Cliente implements Data {
 	private int idade;
 	private static int numero = 0;
 	ContaCorrente conta;
+	ContaPoupanca contaPoupanca;
 
 	public Cliente(String nome, String sobrenome, String cpf, int idade) {
 		setNome(nome);
@@ -21,6 +22,7 @@ public class Cliente implements Data {
 		validarIdade(idade, cpf);
 		numero++;
 		conta = new ContaCorrente(getNome() + " " + getSobrenome(), getNumero());
+		contaPoupanca = new ContaPoupanca(getNome() + " " + getSobrenome());
 	}
 
 	public static int getNumero() {
@@ -86,7 +88,7 @@ public class Cliente implements Data {
 
 	@Override
 	public String toString() {
-		String cliente = "Bem vindo ao Banco do Taison" +
+		String cliente = "Bem vindo ao Banco do Taison\n" +
 						 "----------------------------\n\n" +
 						 "Nome: " + getNome() + " " + getSobrenome() + "\n" +
 						 "Idade " + getIdade() + ", Cpf " + getCpf() +	"\n\nAcessar:\n" +
