@@ -5,19 +5,19 @@ import br.com.caelum.serviçosFuncionarios.Autenticavel;
 import javax.swing.JOptionPane;
 
 public class Gerente extends Funcionario  {
-	private int senha;
+	private int senha=12345;
 	private int numeroDeFuncionarios;
+	ListaFuncionarios listaFuncionarios = new ListaFuncionarios();
 
-	public Gerente(String nome, String sobrenome, String cpf) {
-		super(nome, sobrenome, cpf);
+
+	public Gerente() {
+		super("Gerente do Banco Taison", "000.000.400-20");
 	}
 
 	public boolean autentica(int senha) {
 		if(senha==getSenha()) {
-			JOptionPane.showMessageDialog(null, "Acesso confirmado");
 			return true;
 		}else {
-			JOptionPane.showMessageDialog(null, "Acesso negado");
 			return false;
 		}
 	}
@@ -27,20 +27,29 @@ public class Gerente extends Funcionario  {
 		return super.bonificacao()*0.2;
 	}
 
-	private int getSenha() {
-		return this.senha;
-	}
-	
-	public void setSenha(int senha) {
-		this.senha = senha;
+	@Override
+	public double getSalario() {
+		return 9000.00;
 	}
 
-	public double getBonificacao(){
-		return super.getSalario()*1.4;
+	private int getSenha() {
+		return this.senha;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString();
+		String funcionario;
+		funcionario = "Nome: " + getNome() + "\n" +
+				"Cpf: " + getCpf() + "\n\n" +
+				"Salário: " + getSalario() + "\n" +
+				"Bonûs mensal: " + bonificacao() + "\n\n" +
+				"Digite" + "\n" +
+				"1. Gerenciar Clientes" + "\n" +
+				"2. Gerenciar Funcionários" + "\n\n" +
+				"0. Retornar ao menu anterior" + "\n\n\n" +
+				"---------------------" + "\n" +
+				data();
+
+		return funcionario;
 	}
 }

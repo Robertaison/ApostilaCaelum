@@ -2,6 +2,10 @@
 package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
+import br.com.caelum.funcionarios.Funcionario;
+import br.com.caelum.funcionarios.Gerente;
+import br.com.caelum.funcionarios.ListaFuncionarios;
+import br.com.caelum.funcionarios.SistemaInterno;
 import br.com.caelum.serviçosDaConta.CadastroClientes;
 import br.com.caelum.serviçosDaConta.ListaClientes;
 
@@ -11,15 +15,26 @@ public class OOBasico {
 
 	public static void main(String[] args) {
         int op=3;
-        int op1=5;
         int op2=5;
         int op3=5;
 
+
         CadastroClientes cadastro = new CadastroClientes();
-        ListaClientes lista = new ListaClientes();
-        int cliente;
+        ListaClientes listaClientes = new ListaClientes();
+        ListaFuncionarios listaFuncionarios = new ListaFuncionarios();
+        SistemaInterno acesso = new SistemaInterno();
+
+        Funcionario funcionario1 = new Funcionario("João Silva", "500.400.300-10");
+        Funcionario funcionario2 = new Funcionario("Amanda Silva", "400.500.200-10");
+        Gerente gerente = new Gerente();
+
+        listaFuncionarios.addFuncionario(funcionario1);
+        listaFuncionarios.addFuncionario(funcionario2);
+
+        int indice;
 
         while(op!=0){
+
             op = Integer.parseInt(JOptionPane.showInputDialog(null,
                     "Digite uma opção." +
                              "\n----------------\n\n" +
@@ -30,31 +45,32 @@ public class OOBasico {
 
             switch (op){
                 case 1:
+                    int op1=5;
                     while(op1!=0) {
                         op1 = Integer.parseInt(JOptionPane.showInputDialog("1. Para acesssar a conta\n" +
                                 "2. Para criar a nova conta\n\n" +
                                 "0. sair"));
                         if (op1 == 1) {
-                            if (lista.checarLista()) {
+                            if (listaClientes.checarLista()) {
                                 JOptionPane.showMessageDialog(null, "Não tem clientes cadastrados.");
                             } else {
                                 while (op2 != 0) {
                                     op2 = Integer.parseInt(JOptionPane.showInputDialog("Escolha sua conta: " +
                                             "\n-----------------\n\n" +
-                                            lista.listarClientes() +
+                                            listaClientes.listarClientes() +
                                             "\n\n-----------------\n" +
                                             "0. Para sair"));
                                     if(op2!=0){
-                                        cliente = op2 - 1;
-                                        if (lista.getClienteIndex(cliente).validaCpf(JOptionPane.showInputDialog("Digite seu cpf, apenas números."))) {
+                                        indice = op2 - 1;
+                                        if (listaClientes.getClienteIndex(indice).validaCpf(JOptionPane.showInputDialog("Digite seu cpf, apenas números."))) {
                                             while (op3 != 0) {
-                                                op3 = Integer.parseInt(JOptionPane.showInputDialog(null, lista.getClienteIndex(cliente)));
+                                                op3 = Integer.parseInt(JOptionPane.showInputDialog(null, listaClientes.getClienteIndex(indice)));
                                                 if (op3 == 1) {
                                                     //contaCorrente
-                                                    lista.getClienteIndex(cliente).getContaCorrente().Menu();
+                                                    listaClientes.getClienteIndex(indice).getContaCorrente().Menu();
                                                 } else if (op3 == 2) {
                                                     //contaPoupança
-                                                    lista.getClienteIndex(cliente).getContaPoupanca().Menu();
+                                                    listaClientes.getClienteIndex(indice).getContaPoupanca().Menu();
                                                 } else if(op3 == 3){
                                                     //seguro de vida
                                                 }else if (op3 == 0) {
@@ -71,19 +87,69 @@ public class OOBasico {
                                         JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
                                     } else{
                                         JOptionPane.showMessageDialog(null, "Cpf inválido, digite o cpf vaálido  do usuário " +
-                                                lista.getClienteIndex(op-1).getNome() + " " +
-                                                lista.getClienteIndex(op-1).getSobrenome());
+                                                listaClientes.getClienteIndex(op-1).getNome() + " " +
+                                                listaClientes.getClienteIndex(op-1).getSobrenome());
                                     }
                                 }
                             }
 
                         } else if (op1 == 2) {
-                            cadastro.cadastrarCliente(lista);
+                            cadastro.cadastrarCliente(listaClientes);
+                        }else if (op1 == 0){
+                            JOptionPane.showMessageDialog(null, "Retornando ao menu anterior.");
+                            op=5;
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
                         }
                     }
                     break;
                 case 2:
-                    //implementar
+                    int op5=5;
+                    while (op5!=0){
+
+                        op5 = Integer.parseInt(JOptionPane.showInputDialog("1. Funcionários" + "\n" +
+                                                                           "2. Gerente" + "\n\n" +
+                                                                           "0. Retornar ao menu anterior"));
+                        if (op5==1){
+                            while (op2!=0){
+                                op2 = Integer.parseInt(JOptionPane.showInputDialog("Escolha sua conta: " +
+                                        "\n-----------------\n\n" +
+                                        listaFuncionarios.listarFuncinario() +
+                                        "\n\n-----------------\n" +
+                                        "0. Para sair"));
+                                if (op2!=0){
+                                    indice=op-1;
+                                    if(acesso.login(listaFuncionarios.getFuncionario(indice))){
+                                        while (op3!=0){
+                                            int opcao = Integer.parseInt(JOptionPane.showInputDialog(listaFuncionarios.getFuncionario(indice)));
+                                            if(opcao == 1){
+                                                //gerenciarClientes
+                                            }else if (opcao == 0){
+                                                JOptionPane.showMessageDialog(null,"Retornando ao menu anterior");
+                                            }else{
+                                                JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+                                            }
+                                        }
+                                    }
+                                }else if(op2==0){
+                                    JOptionPane.showMessageDialog(null,"Retornando ao menu anterior");
+                                }else{
+                                    JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+                                }
+                            }
+                        }else if(op5==2){
+                            if(acesso.login(gerente)){
+                                int opcao = Integer.parseInt(JOptionPane.showInputDialog(gerente));
+                            }else{
+                                JOptionPane.showMessageDialog(null,"Senha incorreta.");
+                            }
+                        }else if (op5==0){
+                            JOptionPane.showMessageDialog(null,"Retornando ao menu anterior");
+                            op=5;
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+                        }
+                    }
                     break;
             }
         }

@@ -1,26 +1,48 @@
 package br.com.caelum.funcionarios;
 
-import br.com.caelum.serviçosDaConta.Data;
-import br.com.caelum.serviçosFuncionarios.Autenticavel;
+import br.com.caelum.serviçosDaConta.CadastroClientes;
+import br.com.caelum.serviçosDaConta.ListaClientes;
 import br.com.caelum.serviçosFuncionarios.FuncionarioDoSistema;
-import br.com.caelum.serviçosFuncionarios.GerenciarCliente;
 
+import javax.swing.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
-public abstract class Funcionario implements FuncionarioDoSistema {
+public class Funcionario implements FuncionarioDoSistema {
 	private String nome;
 	private String cpf;
 	private double salario;
-	GerenciarCliente gerenciador;
+	private int senha = 1234;
+	CadastroClientes cadastroClientes = new CadastroClientes();
+	ListaFuncionarios listaFuncionarios;
 
-	public Funcionario(String nome, String sobrenome, String cpf){
-		setNome(nome + " " + sobrenome);
+	public Funcionario(String nome,  String cpf){
+		setNome(nome);
 		setCpf(cpf);
-		gerenciador = new GerenciarCliente();
 	}
+
+	public void gerenciarCliente(ListaClientes clientes, int i){
+		switch (i){
+			case 1:
+				clientes.listarClientes();
+				break;
+			case 2:
+				cadastroClientes.cadastrarCliente(clientes);
+				break;
+			case 3:
+				clientes.apagarCliente(i);
+				cadastroClientes.cadastroClienteNoIndice(clientes, i);
+				break;
+			case 4:
+				clientes.apagarCliente(i);
+				break;
+			case 5:
+				break;
+		}
+	}
+
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
@@ -48,7 +70,11 @@ public abstract class Funcionario implements FuncionarioDoSistema {
 
 	@Override
 	public boolean autentica(int senha) {
-		return false;
+		if(this.senha == senha){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	@Override
@@ -59,8 +85,8 @@ public abstract class Funcionario implements FuncionarioDoSistema {
 					  "Salário: " + getSalario() + "\n" +
 					  "Bonûs mensal: " + bonificacao() + "\n\n" +
 					  "Digite" + "\n" +
-				   	  "1. Gerenciar Clientes" + "\n" +
-					  "0. Sair" + "\n\n\n" +
+				   	  "1. Gerenciar Clientes" + "\n\n" +
+					  "0. Retornar ao menu anterior" + "\n\n\n" +
 					  "---------------------" + "\n" +
 				      data();
 
