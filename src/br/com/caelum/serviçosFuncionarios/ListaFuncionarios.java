@@ -1,4 +1,6 @@
-package br.com.caelum.funcionarios;
+package br.com.caelum.serviçosFuncionarios;
+
+import br.com.caelum.funcionarios.Funcionario;
 
 import java.util.ArrayList;
 import java.util.List;

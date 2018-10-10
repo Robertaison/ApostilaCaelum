@@ -1,6 +1,6 @@
-package br.com.caelum.serviçosDaConta;
+package br.com.caelum.servicoCliente;
 
-import br.com.caelum.conta.Cliente;
+import br.com.caelum.cliente.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,12 @@ public class ListaClientes {
     }
 
     public String listarClientes(){
-        String lista = "";
+        String lista = "Clientes cadastrados: " + "\n" +
+                       "--------------------" + "\n\n";
             for(int i = 0; i<clientes.size();i++){
-                lista += (i + 1) + ". " + clientes.get(i).getNome() + " " + clientes.get(i).getSobrenome() + "\n";
+                lista += "ID: " + (i + 1) + ". " + clientes.get(i).getNome() + " " + clientes.get(i).getSobrenome() + "\n";
             }
+            lista+= "\n\n-------------------\n";
         return lista;
     }
 

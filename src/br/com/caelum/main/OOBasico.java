@@ -2,12 +2,13 @@
 package br.com.caelum.main;
 import javax.swing.JOptionPane;
 
+import br.com.caelum.cliente.Cliente;
 import br.com.caelum.funcionarios.Funcionario;
 import br.com.caelum.funcionarios.Gerente;
-import br.com.caelum.funcionarios.ListaFuncionarios;
+import br.com.caelum.serviçosFuncionarios.ListaFuncionarios;
 import br.com.caelum.funcionarios.SistemaInterno;
-import br.com.caelum.serviçosDaConta.CadastroClientes;
-import br.com.caelum.serviçosDaConta.ListaClientes;
+import br.com.caelum.servicoCliente.CadastroClientes;
+import br.com.caelum.servicoCliente.ListaClientes;
 
 
 
@@ -24,9 +25,14 @@ public class OOBasico {
         ListaFuncionarios listaFuncionarios = new ListaFuncionarios();
         SistemaInterno acesso = new SistemaInterno();
 
-        Funcionario funcionario1 = new Funcionario("João Silva", "500.400.300-10");
-        Funcionario funcionario2 = new Funcionario("Amanda Silva", "400.500.200-10");
+        Cliente cliente1 = new Cliente("Jhon","jr", "800.300.700-30", 29);
+        Cliente cliente2 = new Cliente("Kid","jr", "830.768.704-50", 27);
+        Funcionario funcionario1 = new Funcionario("João Silva", "500.400.300-10", 25);
+        Funcionario funcionario2 = new Funcionario("Amanda Silva", "400.500.200-10", 23);
         Gerente gerente = new Gerente();
+
+        listaClientes.addCliente(cliente1);
+        listaClientes.addCliente(cliente2);
 
         listaFuncionarios.addFuncionario(funcionario1);
         listaFuncionarios.addFuncionario(funcionario2);
@@ -55,10 +61,8 @@ public class OOBasico {
                                 JOptionPane.showMessageDialog(null, "Não tem clientes cadastrados.");
                             } else {
                                 while (op2 != 0) {
-                                    op2 = Integer.parseInt(JOptionPane.showInputDialog("Escolha sua conta: " +
-                                            "\n-----------------\n\n" +
+                                    op2 = Integer.parseInt(JOptionPane.showInputDialog(
                                             listaClientes.listarClientes() +
-                                            "\n\n-----------------\n" +
                                             "0. Para sair"));
                                     if(op2!=0){
                                         indice = op2 - 1;
@@ -123,7 +127,7 @@ public class OOBasico {
                                         while (op3!=0){
                                             int opcao = Integer.parseInt(JOptionPane.showInputDialog(listaFuncionarios.getFuncionario(indice)));
                                             if(opcao == 1){
-                                                //gerenciarClientes
+                                                listaFuncionarios.getFuncionario(indice).gerenciarCliente(listaClientes);
                                             }else if (opcao == 0){
                                                 JOptionPane.showMessageDialog(null,"Retornando ao menu anterior");
                                             }else{
@@ -140,6 +144,13 @@ public class OOBasico {
                         }else if(op5==2){
                             if(acesso.login(gerente)){
                                 int opcao = Integer.parseInt(JOptionPane.showInputDialog(gerente));
+                                while (opcao!=0){
+                                    if (opcao==1){
+                                        gerente.gerenciarCliente(listaClientes);
+                                    }else if (opcao==2){
+                                        gerente.gerenciarFuncionario(listaFuncionarios);
+                                    }
+                                }
                             }else{
                                 JOptionPane.showMessageDialog(null,"Senha incorreta.");
                             }

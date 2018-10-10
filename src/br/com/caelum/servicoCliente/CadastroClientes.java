@@ -1,9 +1,8 @@
-package br.com.caelum.serviçosDaConta;
+package br.com.caelum.servicoCliente;
 
-import br.com.caelum.conta.Cliente;
+import br.com.caelum.cliente.Cliente;
 
 import javax.swing.*;
-import java.util.List;
 
 public class CadastroClientes {
     public void cadastrarCliente(ListaClientes lista) {

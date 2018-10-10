@@ -1,4 +1,6 @@
-package br.com.caelum.conta;
+package br.com.caelum.cliente;
+import br.com.caelum.conta.ContaCorrente;
+import br.com.caelum.conta.ContaPoupanca;
 import br.com.caelum.serviçosDaConta.Data;
 
 import javax.swing.JOptionPane;

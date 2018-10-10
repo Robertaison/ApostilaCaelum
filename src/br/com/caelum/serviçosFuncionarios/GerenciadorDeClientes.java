@@ -1,7 +1,7 @@
 package br.com.caelum.serviçosFuncionarios;
 
-import br.com.caelum.conta.Cliente;
-import br.com.caelum.serviçosDaConta.ListaClientes;
+import br.com.caelum.cliente.Cliente;
+import br.com.caelum.servicoCliente.ListaClientes;
 
 
 public interface GerenciadorDeClientes {

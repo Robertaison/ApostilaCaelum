@@ -1,17 +1,19 @@
 package br.com.caelum.funcionarios;
 
-import br.com.caelum.serviçosFuncionarios.Autenticavel;
+import br.com.caelum.serviçosFuncionarios.CadastroFuncionários;
+import br.com.caelum.serviçosFuncionarios.ListaFuncionarios;
 
 import javax.swing.JOptionPane;
 
 public class Gerente extends Funcionario  {
 	private int senha=12345;
 	private int numeroDeFuncionarios;
-	ListaFuncionarios listaFuncionarios = new ListaFuncionarios();
+	CadastroFuncionários cadastroFuncionários = new CadastroFuncionários();
+
 
 
 	public Gerente() {
-		super("Gerente do Banco Taison", "000.000.400-20");
+		super("Gerente do Banco Taison", "000.000.400-20", 34);
 	}
 
 	public boolean autentica(int senha) {
@@ -19,6 +21,51 @@ public class Gerente extends Funcionario  {
 			return true;
 		}else {
 			return false;
+		}
+	}
+
+	public void gerenciarFuncionario(ListaFuncionarios funcionarios){
+		int i = 6;
+		while (i!=0){
+			i = Integer.parseInt(JOptionPane.showInputDialog("O que gostaria de fazer: " + "\n\n" +
+					"1. Listar os funcionários" + "\n" +
+					"2. Adicionar funcionários" + "\n" +
+					"3. Atualizar funcionários por id" + "\n" +
+					"4. Remover funcionários por id" + "\n" +
+					"5. Pesquisar funcionários por id" + "\n\n" +
+					"0. Retornar ao funcionários anterior."));
+			switch (i) {
+				case 1:
+					if (funcionarios.checarLista()) {
+						JOptionPane.showMessageDialog(null, "Não há funcionários cadastrados");
+					} else {
+						JOptionPane.showMessageDialog(null, funcionarios.listarFuncinario());
+					}
+					break;
+				case 2:
+					cadastroFuncionários.cadastrarFuncionario(funcionarios);
+					break;
+				case 3:
+					funcionarios.deletarFuncionario(i);
+					cadastroFuncionários.cadastroFuncionarioNoIndice(funcionarios, i);
+					break;
+				case 4:
+					int index1 = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do funcionário:"));
+					funcionarios.deletarFuncionario(index1 - 1);
+					break;
+				case 5:
+					int index = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do funcionário:"));
+					JOptionPane.showMessageDialog(null, "Cliente :" + funcionarios.getFuncionario(index - 1).getNome() + "\n" +
+							"Idade: " + funcionarios.getFuncionario(index - 1).getIdade() + "      . " +
+							"Cpf: " + funcionarios.getFuncionario(index - 1).getCpf() + "\n");
+					break;
+				case 0:
+					JOptionPane.showMessageDialog(null, "Retornando ao menu anterior");
+					break;
+				default:
+					JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+					break;
+			}
 		}
 	}
 

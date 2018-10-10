@@ -1,7 +1,7 @@
 package br.com.caelum.funcionarios;
 
-import br.com.caelum.serviçosDaConta.CadastroClientes;
-import br.com.caelum.serviçosDaConta.ListaClientes;
+import br.com.caelum.servicoCliente.CadastroClientes;
+import br.com.caelum.servicoCliente.ListaClientes;
 import br.com.caelum.serviçosFuncionarios.FuncionarioDoSistema;
 
 import javax.swing.*;
@@ -15,31 +15,65 @@ public class Funcionario implements FuncionarioDoSistema {
 	private String cpf;
 	private double salario;
 	private int senha = 1234;
+	private int idade;
 	CadastroClientes cadastroClientes = new CadastroClientes();
-	ListaFuncionarios listaFuncionarios;
 
-	public Funcionario(String nome,  String cpf){
+	public Funcionario(String nome,  String cpf, int idade){
 		setNome(nome);
 		setCpf(cpf);
+		setIdade(idade);
 	}
 
-	public void gerenciarCliente(ListaClientes clientes, int i){
-		switch (i){
-			case 1:
-				clientes.listarClientes();
-				break;
-			case 2:
-				cadastroClientes.cadastrarCliente(clientes);
-				break;
-			case 3:
-				clientes.apagarCliente(i);
-				cadastroClientes.cadastroClienteNoIndice(clientes, i);
-				break;
-			case 4:
-				clientes.apagarCliente(i);
-				break;
-			case 5:
-				break;
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public int getIdade() {
+		return idade;
+	}
+
+	public void gerenciarCliente(ListaClientes clientes){
+		int i = 6;
+		while (i!=0){
+			 i = Integer.parseInt(JOptionPane.showInputDialog("O que gostaria de fazer: " + "\n\n" +
+					"1. Listar os clientes." + "\n" +
+					"2. Adicionar cliente" + "\n" +
+					"3. Atualizar cliente por id" + "\n" +
+					"4. Remover cliente por id" + "\n" +
+					"5. Pesquisar cliente por id" + "\n\n" +
+					"0. Retornar ao menu anterior."));
+			switch (i) {
+				case 1:
+					if (clientes.checarLista()) {
+						JOptionPane.showMessageDialog(null, "Não há funcionários cadastrados");
+					} else {
+						JOptionPane.showMessageDialog(null, clientes.listarClientes());
+					}
+					break;
+				case 2:
+					cadastroClientes.cadastrarCliente(clientes);
+					break;
+				case 3:
+					clientes.apagarCliente(i);
+					cadastroClientes.cadastroClienteNoIndice(clientes, i);
+					break;
+				case 4:
+					int index1 = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do funcionário:"));
+					clientes.apagarCliente(index1 - 1);
+					break;
+				case 5:
+					int index = Integer.parseInt(JOptionPane.showInputDialog("Digite o id do funcionário:"));
+					JOptionPane.showMessageDialog(null, "Cliente :" + clientes.getClienteIndex(index - 1).getNome() + " " + clientes.getClienteIndex(i).getSobrenome() + "\n" +
+							"Idade: " + clientes.getClienteIndex(index - 1).getIdade() + "      . " +
+							"Cpf: " + clientes.getClienteIndex(index - 1).getCpf() + "\n");
+					break;
+				case 0:
+					JOptionPane.showMessageDialog(null, "Retornando ao menu anterior");
+					break;
+				default:
+					JOptionPane.showMessageDialog(null, "Digite uma opção válida.");
+					break;
+			}
 		}
 	}
 
