@@ -1,6 +1,8 @@
 package br.com.caelum.cliente;
 import br.com.caelum.conta.ContaCorrente;
 import br.com.caelum.conta.ContaPoupanca;
+import br.com.caelum.servicoCliente.CadastroClientes;
+import br.com.caelum.servicoCliente.ListaClientes;
 import br.com.caelum.serviçosDaConta.Data;
 
 import javax.swing.JOptionPane;
@@ -18,7 +20,6 @@ public class Cliente implements Data {
 	private ContaCorrente contaCorrente;
 	private ContaPoupanca contaPoupanca;
 
-
 	public Cliente(String nome, String sobrenome, String cpf, int idade) {
 		setNome(nome);
 		setSobrenome(sobrenome);
@@ -27,6 +28,9 @@ public class Cliente implements Data {
 		contaCorrente = new ContaCorrente(getNome() + " " + getSobrenome(), getNumero());
 		contaPoupanca = new ContaPoupanca(getNome() + " " + getSobrenome());
 	}
+
+
+
 
 	public static int getNumero() {
 		return numero;

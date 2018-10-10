@@ -22,10 +22,12 @@ public class ListaFuncionarios {
     }
 
     public String listarFuncinario(){
-        String lista = "";
+        String lista = "Funcionários ativos: " + "\n" +
+                       "-------------------\n\n";
         for(int i = 0; i<funcionarios.size();i++){
             lista += (i + 1) + ". " + funcionarios.get(i).getNome() +  "\n";
         }
+        lista+=   "\n\n-------------------\n";
         return lista;
     }
 
